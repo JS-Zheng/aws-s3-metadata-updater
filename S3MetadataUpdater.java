@@ -22,7 +22,7 @@ public class S3MetadataUpdater {
     private static final int FORMAT_JPEG = 1;
     private static final int FORMAT_PNG = 2;
 
-    // Please update these fields
+    // Please update these fields!!
     private static final String YOUR_BUCKET_NAME = "your-bucket-name";
     private static final String YOUR_BUCKET_PATH = "wp-content/uploads/";
     private static final long MAX_AGE = 31536000L;
@@ -37,7 +37,7 @@ public class S3MetadataUpdater {
              * (~/.aws/credentials).
              */
             AmazonS3 s3 = AmazonS3ClientBuilder.standard()
-                    .withRegion(Regions.AP_NORTHEAST_1)
+                    .withRegion(Regions.AP_NORTHEAST_1) // Please update to your regions!!
                     .build();
 
 
@@ -51,7 +51,7 @@ public class S3MetadataUpdater {
 
             for (S3ObjectSummary os : objects) {
                 /*
-                 * do something.
+                 * do something yourself.
                  */
                 updateContentType(s3, os);
             }
@@ -100,6 +100,8 @@ public class S3MetadataUpdater {
 
             s3.copyObject(request);
         }
+        
+        // else do nothing.
     }
 
     private static long getExpirationTimeByMaxAge(long age) {
